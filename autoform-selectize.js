@@ -117,7 +117,3 @@ Template.afSelectize.rendered = function () {
 Template.afSelectize.destroyed = function () {
   this.$('select')[0].selectize.destroy();
 };
-
-var isArray = Array.isArray || function(obj) {
-  return Object.prototype.toString.call(obj) === '[object Array]';
-};
