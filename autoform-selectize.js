@@ -1,7 +1,6 @@
 AutoForm.addInputType("selectize", {
   template: "afSelectize",
   valueOut: function () {
-    //console.log(this);
     return this[0].value;
   },
   valueConverters: {
