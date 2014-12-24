@@ -6,7 +6,7 @@ AutoForm.addInputType("selectize", {
   valueConverters: {
     "number": AutoForm.Utility.stringToNumber,
     "numberArray": function (val) {
-      if (isArray(val)) {
+      if (_.isArray(val)) {
         return _.map(val, function (item) {
           item = $.trim(item);
           return AutoForm.Utility.stringToNumber(item);
@@ -16,7 +16,7 @@ AutoForm.addInputType("selectize", {
     },
     "boolean": AutoForm.Utility.stringToBool,
     "booleanArray": function (val) {
-      if (isArray(val)) {
+      if (_.isArray(val)) {
         return _.map(val, function (item) {
           item = $.trim(item);
           return AutoForm.Utility.stringToBool(item);
@@ -26,7 +26,7 @@ AutoForm.addInputType("selectize", {
     },
     "date": AutoForm.Utility.stringToDate,
     "dateArray": function (val) {
-      if (isArray(val)) {
+      if (_.isArray(val)) {
         return _.map(val, function (item) {
           item = $.trim(item);
           return AutoForm.Utility.stringToDate(item);
