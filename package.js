@@ -1,7 +1,7 @@
 Package.describe({
   name: 'comerc:autoform-selectize',
   summary: 'Custom selectize input type for AutoForm',
-  version: '1.0.1',
+  version: '2.0.0',
   git: 'https://github.com/comerc/meteor-autoform-selectize.git'
 });
 
@@ -13,6 +13,8 @@ Package.onUse(function(api) {
   api.addFiles([
     'autoform-selectize.html',
     'autoform-selectize.js',
+    'autoform-selectize-input.html',
+    'autoform-selectize-input.js',
     'themes/bootstrap3.html',
     'themes/bootstrap3.js',
   ], 'client');

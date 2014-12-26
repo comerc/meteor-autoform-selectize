@@ -13,7 +13,7 @@ Template["afSelectize_bootstrap3"].helpers({
     var atts = _.clone(this.atts);
     // Add bootstrap class
     atts = AutoForm.Utility.addClass(atts, "form-control");
-    delete atts.select2Options;
+    delete atts.selectizeOptions;
     return atts;
   }
 });
@@ -25,4 +25,23 @@ Template["afSelectize_bootstrap3"].rendered = function () {
 
 Template["afSelectize_bootstrap3"].destroyed = function () {
   this.$('select')[0].selectize.destroy();
+};
+
+Template["afSelectizeInput_bootstrap3"].helpers({
+  atts: function afSelectAtts() {
+    var atts = _.clone(this.atts);
+    // Add bootstrap class
+    atts = AutoForm.Utility.addClass(atts, "form-control");
+    delete atts.selectizeOptions;
+    return atts;
+  }
+});
+
+Template["afSelectizeInput_bootstrap3"].rendered = function () {
+  // instanciate selectize
+  this.$('input').selectize(this.data.atts.selectizeOptions || {});
+};
+
+Template["afSelectizeInput_bootstrap3"].destroyed = function () {
+  this.$('input')[0].selectize.destroy();
 };
