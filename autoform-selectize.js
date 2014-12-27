@@ -1,7 +1,10 @@
 AutoForm.addInputType("selectize", {
   template: "afSelectize",
   valueOut: function () {
-    return this[0].selectize.getValue();
+    // FIXME: may be related https://github.com/aldeed/meteor-autoform/issues/569
+    if (this[0].selectize) {
+      return this[0].selectize.getValue();
+    }
   },
   valueConverters: {
     "number": AutoForm.Utility.stringToNumber,
