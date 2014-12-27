@@ -19,7 +19,7 @@ If using with bootstrap, you'll probably also want to:
 ```bash
 $ meteor add chhib:selectize-bootstrap-3
 ```
-(as replace of `jeremy:selectize`)
+(note: as replace of `jeremy:selectize`)
 
 ## Installation
 
