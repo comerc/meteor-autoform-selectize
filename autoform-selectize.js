@@ -1,7 +1,7 @@
 AutoForm.addInputType("selectize", {
   template: "afSelectize",
   valueOut: function () {
-    return this[0].value;
+    return this[0].selectize.getValue();
   },
   valueConverters: {
     "number": AutoForm.Utility.stringToNumber,
