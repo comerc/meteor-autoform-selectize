@@ -66,7 +66,7 @@ To provide selectize options, set a `selectizeOptions` attribute equal to a help
 
 ## Limitations
 
-Currently only `select` element features are supported. If you would like to add support for hidden `input` element features, please do so and submit a pull request.
+Currently only `select` element features are supported. **UPD** You can use `selectize-input` now.
 
 ## Contributing
 
