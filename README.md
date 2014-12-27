@@ -19,6 +19,7 @@ If using with bootstrap, you'll probably also want to:
 ```bash
 $ meteor add chhib:selectize-bootstrap-3
 ```
+(note: as replace of `jeremy:selectize`)
 
 ## Installation
 
@@ -66,7 +67,7 @@ To provide selectize options, set a `selectizeOptions` attribute equal to a help
 
 ## Limitations
 
-Currently only `select` element features are supported. If you would like to add support for hidden `input` element features, please do so and submit a pull request.
+Currently only `select` element features are supported. **UPD** You can use `selectize-input` now.
 
 ## Contributing
 
