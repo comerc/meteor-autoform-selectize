@@ -44,6 +44,13 @@ Template["afSelectizeInput_bootstrap3"].helpers({
   }
 });
 
+Template["afSelectizeInput_bootstrap3"].events({
+  "click .selectized": function (event) {
+    // TODO: https://github.com/brianreavis/selectize.js/issues/658
+    $(event.toElement).next().children(":first-child").children("input:first").focus();
+  }
+});
+
 Template["afSelectizeInput_bootstrap3"].rendered = function () {
   // instanciate selectize
   this.$('input').selectize(this.data.atts.selectizeOptions || {});
