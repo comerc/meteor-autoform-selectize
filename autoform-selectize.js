@@ -52,7 +52,7 @@ AutoForm.addInputType("selectize", {
     if (firstOption !== false) {
       context.items.push({
         name: context.name,
-        label: (typeof firstOption === "string" ? firstOption : "(Select One)"),
+        label: (typeof firstOption === "string" ? firstOption : "Select an option"),
         value: "",
         // _id must be included because it is a special property that
         // #each uses to track unique list items when adding and removing them
@@ -109,6 +109,13 @@ Template.afSelectize.helpers({
     var atts = _.clone(this.atts);
     delete atts.selectizeOptions;
     return atts;
+  }
+});
+
+Template.afSelectize.events({
+  "click .selectized": function (event) {
+    // TODO: https://github.com/brianreavis/selectize.js/issues/658
+    $(event.toElement).next().children(":first-child").children("input:first").focus();
   }
 });
 
