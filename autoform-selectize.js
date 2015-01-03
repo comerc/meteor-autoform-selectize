@@ -52,7 +52,7 @@ AutoForm.addInputType("selectize", {
     if (firstOption !== false) {
       context.items.push({
         name: context.name,
-        label: (typeof firstOption === "string" ? firstOption : "Select an option"),
+        label: (typeof firstOption === "string" ? firstOption : defaults.firstOption),
         value: "",
         // _id must be included because it is a special property that
         // #each uses to track unique list items when adding and removing them
@@ -91,6 +91,13 @@ AutoForm.addInputType("selectize", {
     });
 
     return context;
+  },
+  defaults: function (options) {
+    if (options) {
+      defaults = options;
+    } else
+
+    return defaults;
   }
 });
 
@@ -127,3 +134,14 @@ Template.afSelectize.rendered = function () {
 Template.afSelectize.destroyed = function () {
   this.$('select')[0].selectize.destroy();
 };
+
+var defaults = {
+  // firstOption: "Select an option"
+};
+
+AutoForm.Selectize = {};
+AutoForm.Selectize.setDefaults = function (v) {
+  if (v.firstOption) {
+    defaults.firstOption = v.firstOption;
+  }
+}
