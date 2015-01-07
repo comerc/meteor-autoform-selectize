@@ -42,7 +42,8 @@ In the schema, which will then work with a `quickForm` or `afQuickFields`:
     autoform: {
       type: "selectize",
       afFieldInput: {
-        multiple: true
+        multiple: true,
+        selectizeOptions: {}
       }
     }
   }

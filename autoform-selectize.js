@@ -91,13 +91,6 @@ AutoForm.addInputType("selectize", {
     });
 
     return context;
-  },
-  defaults: function (options) {
-    if (options) {
-      defaults = options;
-    } else
-
-    return defaults;
   }
 });
 
@@ -136,7 +129,7 @@ Template.afSelectize.destroyed = function () {
 };
 
 var defaults = {
-  // firstOption: "Select an option"
+  firstOption: "Select an option"
 };
 
 AutoForm.Selectize = {};
