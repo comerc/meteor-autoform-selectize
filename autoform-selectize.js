@@ -133,8 +133,8 @@ var defaults = {
 };
 
 AutoForm.Selectize = {};
-AutoForm.Selectize.setDefaults = function (v) {
-  if (v.firstOption) {
-    defaults.firstOption = v.firstOption;
+AutoForm.Selectize.setDefaults = function (o) {
+  if (_.has(o, "firstOption")) {
+    defaults.firstOption = o.firstOption;
   }
 }
