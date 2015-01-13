@@ -49,7 +49,9 @@ AutoForm.addInputType("selectize", {
     context.items = [];
 
     // If a firstOption was provided, add that to the items list first
-    if (firstOption !== false) {
+    if (firstOption === false) {
+      // nothing
+    } else if (typeof firstOption === "string" || typeof defaults.firstOption === "string") {  
       context.items.push({
         name: context.name,
         label: (typeof firstOption === "string" ? firstOption : defaults.firstOption),
