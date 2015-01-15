@@ -51,7 +51,7 @@ AutoForm.addInputType("selectize", {
     // If a firstOption was provided, add that to the items list first
     if (firstOption === false) {
       // nothing
-    } else if (typeof firstOption === "string" || typeof defaults.firstOption === "string") {  
+    } else if (typeof firstOption === "string" || typeof defaults.firstOption === "string") {
       context.items.push({
         name: context.name,
         label: (typeof firstOption === "string" ? firstOption : defaults.firstOption),
@@ -109,6 +109,9 @@ Template.afSelectize.helpers({
   },
   atts: function afSelectAtts() {
     var atts = _.clone(this.atts);
+    // TODO: if (style == 'bootstrap3') ...
+    // Add bootstrap class
+    atts = AutoForm.Utility.addClass(atts, "form-control");
     delete atts.selectizeOptions;
     return atts;
   }

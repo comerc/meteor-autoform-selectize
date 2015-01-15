@@ -42,6 +42,9 @@ AutoForm.addInputType("selectize-input", {
 Template.afSelectizeInput.helpers({
   atts: function afSelectAtts() {
     var atts = _.clone(this.atts);
+    // TODO: if (style == 'bootstrap3') ...
+    // Add bootstrap class
+    atts = AutoForm.Utility.addClass(atts, "form-control");
     delete atts.selectizeOptions;
     return atts;
   }
