@@ -21,8 +21,6 @@ $ meteor add chhib:selectize-bootstrap-3
 ```
 (note: as replace of `jeremy:selectize`)
 
-and just add `class="form-control"`
-
 ## Installation
 
 In a Meteor app directory, enter:
