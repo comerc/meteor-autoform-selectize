@@ -73,3 +73,7 @@ Currently only `select` element features are supported. **UPD** You can use `sel
 ## Contributing
 
 Anyone is welcome to contribute. Fork, make your changes, and then submit a pull request.
+
+## See also
+
+[selectize-placecomplete](https://github.com/comerc/selectize-placecomplete)
