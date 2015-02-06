@@ -127,6 +127,15 @@ Template.afSelectize.events({
 Template.afSelectize.rendered = function () {
   // instanciate selectize
   this.$('select').selectize(this.data.atts.selectizeOptions || {});
+
+  var selectize = this.$('select')[0].selectize;
+
+  this.autorun(function () {
+    var items = Blaze.getData().items;
+
+    _refreshSelectizeOptions(selectize, items);
+  });
+
 };
 
 Template.afSelectize.destroyed = function () {
@@ -143,3 +152,27 @@ AutoForm.Selectize.setDefaults = function (o) {
     defaults.firstOption = o.firstOption;
   }
 }
+
+var _refreshSelectizeOptions = function (selectize, options) {
+  var items = selectize.items;
+
+  selectize.clearOptions();
+
+  _.each(options, function (option) {
+    if(option.optgroup){
+      selectize.addOptionGroup(option.optgroup, {label: option.optgroup});
+
+      _.each(option.items, function (groupOption){
+        selectize.addOption({value: groupOption.value, text: groupOption.label, optgroup: option.optgroup});
+      });
+    }else{
+      if (option.value) {
+        selectize.addOption({value: option.value, text: option.label});
+      }
+    }
+  });
+
+  _.each(items, function (item){
+    selectize.addItem(item, true);
+  });
+};
