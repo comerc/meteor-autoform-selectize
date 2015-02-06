@@ -159,20 +159,20 @@ var _refreshSelectizeOptions = function (selectize, options) {
   selectize.clearOptions();
 
   _.each(options, function (option) {
-    if(option.optgroup){
+    if (option.optgroup) {
       selectize.addOptionGroup(option.optgroup, {label: option.optgroup});
 
-      _.each(option.items, function (groupOption){
+      _.each(option.items, function (groupOption) {
         selectize.addOption({value: groupOption.value, text: groupOption.label, optgroup: option.optgroup});
       });
-    }else{
+    } else {
       if (option.value) {
         selectize.addOption({value: option.value, text: option.label});
       }
     }
   });
 
-  _.each(items, function (item){
+  _.each(items, function (item) {
     selectize.addItem(item, true);
   });
 };
