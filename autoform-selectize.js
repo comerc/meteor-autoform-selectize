@@ -161,14 +161,11 @@ var _refreshSelectizeOptions = function (selectize, options) {
   _.each(options, function (option) {
     if (option.optgroup) {
       selectize.addOptionGroup(option.optgroup, {label: option.optgroup});
-
       _.each(option.items, function (groupOption) {
         selectize.addOption({value: groupOption.value, text: groupOption.label, optgroup: option.optgroup});
       });
-    } else {
-      if (option.value) {
-        selectize.addOption({value: option.value, text: option.label});
-      }
+    } else if (option.value) {
+      selectize.addOption({value: option.value, text: option.label});
     }
   });
 
