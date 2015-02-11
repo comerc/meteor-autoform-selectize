@@ -1,3 +1,17 @@
 <template name="afSelectize">
-  <select {{atts}}></select>
+  <select {{atts}}>
+    {{#unless isReactiveOptions}}
+      {{#each this.items}}
+        {{#if this.optgroup}}
+          <optgroup label="{{this.optgroup}}">
+          {{#each this.items}}
+          <option {{optionAtts}}>{{this.label}}</option>
+          {{/each}}
+          </optgroup>
+        {{else}}
+          <option {{optionAtts}}>{{this.label}}</option>
+        {{/if}}
+      {{/each}}
+    {{/unless}}
+  </select>
 </template>

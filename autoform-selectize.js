@@ -40,7 +40,7 @@ AutoForm.addInputType("selectize", {
   },
   contextAdjust: function (context) {
     //can fix issues with some browsers selecting the firstOption instead of the selected option
-    context.atts.autocomplete = "off";
+    context.atts.autocomplete = 'off';
 
     var itemAtts = _.omit(context.atts, 'firstOption');
     var firstOption = context.atts.firstOption;
@@ -51,15 +51,15 @@ AutoForm.addInputType("selectize", {
     // If a firstOption was provided, add that to the items list first
     if (firstOption === false) {
       // nothing
-    } else if (typeof firstOption === "string" || typeof defaults.firstOption === "string") {
+    } else if (typeof firstOption === 'string' || typeof _defaults.firstOption === "string") {
       context.items.push({
         name: context.name,
-        label: (typeof firstOption === "string" ? firstOption : defaults.firstOption),
-        value: "",
+        label: (typeof firstOption === 'string' ? firstOption : _defaults.firstOption),
+        value: '',
         // _id must be included because it is a special property that
         // #each uses to track unique list items when adding and removing them
         // See https://github.com/meteor/meteor/issues/2174
-        _id: "",
+        _id: '',
         selected: false,
         atts: itemAtts
       });
@@ -97,23 +97,33 @@ AutoForm.addInputType("selectize", {
 });
 
 Template.afSelectize.helpers({
-  optionAtts: function afSelectOptionAtts() {
+  optionAtts: function () {
     var item = this
     var atts = {
       value: item.value
     };
     if (item.selected) {
-      atts.selected = "";
+      atts.selected = '';
     }
     return atts;
   },
-  atts: function afSelectAtts() {
+  atts: function () {
     var atts = _.clone(this.atts);
     // TODO: if (style == 'bootstrap3') ...
     // Add bootstrap class
-    atts = AutoForm.Utility.addClass(atts, "form-control");
+    atts = AutoForm.Utility.addClass(atts, 'form-control');
     delete atts.selectizeOptions;
+    delete atts.isReactiveOptions;
     return atts;
+  },
+  isReactiveOptions: function () {
+    var isReactiveOptions;
+    if (_.has(this.atts, 'isReactiveOptions')) {
+      isReactiveOptions = this.atts.isReactiveOptions;
+    } else {
+      isReactiveOptions = _defaults.isReactiveOptions;
+    }
+    return isReactiveOptions;
   }
 });
 
@@ -128,28 +138,38 @@ Template.afSelectize.rendered = function () {
   // instanciate selectize
   this.$('select').selectize(this.data.atts.selectizeOptions || {});
 
-  var selectize = this.$('select')[0].selectize;
+  var isReactiveOptions;
+  if (_.has(this.data.atts, 'isReactiveOptions')) {
+    isReactiveOptions = this.data.atts.isReactiveOptions;
+  } else {
+    isReactiveOptions = _defaults.isReactiveOptions;
+  }
 
-  this.autorun(function () {
-    var items = Blaze.getData().items;
-
-    _refreshSelectizeOptions(selectize, items);
-  });
-
+  if (isReactiveOptions) {
+    var selectize = this.$('select')[0].selectize;
+    this.autorun(function () {
+      var items = Blaze.getData().items;
+      _refreshSelectizeOptions(selectize, items);
+    });
+  }
 };
 
 Template.afSelectize.destroyed = function () {
   this.$('select')[0].selectize.destroy();
 };
 
-var defaults = {
-  firstOption: "Select an option"
+var _defaults = {
+  firstOption: 'Select an option',
+  isReactiveOptions: false
 };
 
 AutoForm.Selectize = {};
 AutoForm.Selectize.setDefaults = function (o) {
-  if (_.has(o, "firstOption")) {
-    defaults.firstOption = o.firstOption;
+  if (_.has(o, 'firstOption')) {
+    _defaults.firstOption = o.firstOption;
+  }
+  if (_.has(o, 'isReactiveOptions')) {
+    _defaults.isReactiveOptions = o.isReactiveOptions;
   }
 }
 
