@@ -163,9 +163,15 @@ var _refreshSelectizeOptions = function (selectize, options) {
       selectize.addOptionGroup(option.optgroup, {label: option.optgroup});
       _.each(option.items, function (groupOption) {
         selectize.addOption({value: groupOption.value, text: groupOption.label, optgroup: option.optgroup});
+        if (groupOption.selected) {
+          selectize.addItem(groupOption.value, true);
+        }
       });
     } else if (option.value) {
       selectize.addOption({value: option.value, text: option.label});
+      if (option.selected) {
+        selectize.addItem(option.value, true);
+      }
     }
   });
 
