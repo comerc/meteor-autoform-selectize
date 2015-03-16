@@ -7,9 +7,13 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.0');
-  api.use('templating@1.0.0');
-  api.use('blaze@2.0.0');
-  api.use('aldeed:autoform@4.0.0');
+
+  api.use([
+    'templating',
+    'blaze',
+    'aldeed:autoform'
+  ]);
+
   api.addFiles([
     'autoform-selectize.html',
     'autoform-selectize.js',
