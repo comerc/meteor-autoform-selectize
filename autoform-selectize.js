@@ -146,10 +146,15 @@ Template.afSelectize.rendered = function () {
   }
 
   if (isReactiveOptions) {
+    var test = false;
     var selectize = this.$('select')[0].selectize;
     this.autorun(function () {
-      var items = Blaze.getData().items;
-      _refreshSelectizeOptions(selectize, items);
+      var items = Template.currentData().items;
+      // FIXED double autorun
+      test = !test;
+      if (test) {
+        _refreshSelectizeOptions(selectize, items);
+      }
     });
   }
 };
