@@ -59,7 +59,12 @@ AutoForm.addInputType("selectize", {
         // _id must be included because it is a special property that
         // #each uses to track unique list items when adding and removing them
         // See https://github.com/meteor/meteor/issues/2174
-        _id: '',
+        //
+        // Setting this to an empty string caused problems if option with value
+        // 1 was in the options list because Spacebars evaluates "" to 1 and
+        // considers that a duplicate.
+        // See https://github.com/aldeed/meteor-autoform/issues/656
+        _id: 'AUTOFORM_EMPTY_FIRST_OPTION',
         selected: false,
         atts: itemAtts
       });
@@ -182,6 +187,9 @@ var _refreshSelectizeOptions = function (selectize, options) {
   var items = selectize.items;
 
   selectize.clearOptions();
+
+  // TODO firstOption routines from contextAdjust
+  // FIXME selectize rearranges one option from the middle of the list
 
   _.each(options, function (option) {
     if (option.optgroup) {
