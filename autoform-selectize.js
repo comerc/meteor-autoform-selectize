@@ -7,6 +7,14 @@ AutoForm.addInputType("selectize", {
     }
   },
   valueConverters: {
+    "stringArray": function (val) {
+      if (_.isArray(val)) {
+        return _.map(val, function (item) {
+          return $.trim(item);
+        });
+      }
+      return val;
+    },
     "number": AutoForm.Utility.stringToNumber,
     "numberArray": function (val) {
       if (_.isArray(val)) {
@@ -66,7 +74,7 @@ AutoForm.addInputType("selectize", {
         // See https://github.com/aldeed/meteor-autoform/issues/656
         _id: 'AUTOFORM_EMPTY_FIRST_OPTION',
         selected: false,
-        atts: itemAtts
+        // atts: itemAtts
       });
     }
 
@@ -81,7 +89,7 @@ AutoForm.addInputType("selectize", {
         _id: opt.value,
         selected: _.isArray(context.value) ?
           _.contains(context.value, opt.value) : (opt.value === context.value),
-        atts: itemAtts
+        // atts: itemAtts
       };
     };
 
@@ -140,8 +148,14 @@ Template.afSelectize.events({
 });
 
 Template.afSelectize.rendered = function () {
+  var selectizeOptions = this.data.atts.selectizeOptions || {};
+  // selectize rearranges one option from the middle of the list
+  // https://github.com/selectize/selectize.js/issues/640#issuecomment-71788203
+  if (!selectizeOptions.sortField) {
+    selectizeOptions.sortField = 'text';
+  }
   // instanciate selectize
-  this.$('select').selectize(this.data.atts.selectizeOptions || {});
+  this.$('select').selectize(selectizeOptions);
 
   var isReactiveOptions;
   if (_.has(this.data.atts, 'isReactiveOptions')) {
@@ -187,9 +201,6 @@ var _refreshSelectizeOptions = function (selectize, options) {
   var items = selectize.items;
 
   selectize.clearOptions();
-
-  // TODO firstOption routines from contextAdjust
-  // FIXME selectize rearranges one option from the middle of the list
 
   _.each(options, function (option) {
     if (option.optgroup) {
