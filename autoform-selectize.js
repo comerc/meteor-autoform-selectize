@@ -142,7 +142,7 @@ Template.afSelectize.helpers({
 
 Template.afSelectize.events({
   "click .selectized": function (event) {
-    // TODO: https://github.com/brianreavis/selectize.js/issues/658
+    // TODO: https://github.com/selectize/selectize.js/issues/658
     $(event.toElement).next().children(":first-child").children("input:first").focus();
   }
 });
