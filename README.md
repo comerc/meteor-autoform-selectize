@@ -43,7 +43,7 @@ In the schema, which will then work with a `quickForm` or `afQuickFields`:
       type: "selectize",
       afFieldInput: {
         multiple: true,
-        selectizeOptions: {}
+        options: []
       }
     }
   }
@@ -60,7 +60,29 @@ Or on the `afFieldInput` component or any component that passes along attributes
 {{> afFieldInput name="tags" type="selectize" multiple=true}}
 ```
 
-To provide selectize options, set a `selectizeOptions` attribute equal to a helper that returns the options object. Most of the `data-` attributes that the plugin recognizes should also work.
+To provide selectize options, set an `options` attribute equal to a helper that returns a list of options. Each option should have a `label` field and a `value` field. See example below:
+
+```js
+Template.myFormWithSelectize.helpers({
+  selectizeOptions: function () {
+    return [
+      {value: '1', label: 'option 1'},
+      {value: '2', label: 'option 2'}
+    ]
+  }
+});
+```
+```html
+<template name="myFormWithSelectize">
+  {{#autoForm collection=myCollection id="my-form-id" type="insert"}}
+      {{> afQuickField name="tags" options=selectizeOptions}}
+    <button type="submit" class="btn btn-primary">Insert</button>
+  {{/autoForm}}
+</template>
+```
+
+
+Most of the `data-` attributes that the plugin recognizes should also work.
 
 ## Demo
 
