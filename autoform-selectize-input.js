@@ -6,6 +6,14 @@ AutoForm.addInputType("selectize-input", {
     }
   },
   valueConverters: {
+    "stringArray": function (val) {
+      if (_.isArray(val)) {
+        return _.map(val, function (item) {
+          return $.trim(item);
+        });
+      }
+      return val;
+    },
     "number": AutoForm.Utility.stringToNumber,
     "numberArray": function (val) {
       if (_.isArray(val)) {
@@ -58,8 +66,14 @@ Template.afSelectizeInput.events({
 });
 
 Template.afSelectizeInput.rendered = function () {
+  var selectizeOptions = this.data.atts.selectizeOptions || {};
+  // selectize rearranges one option from the middle of the list
+  // https://github.com/selectize/selectize.js/issues/640#issuecomment-71788203
+  if (!selectizeOptions.sortField) {
+    selectizeOptions.sortField = 'text';
+  }
   // instanciate selectize
-  this.$('input').selectize(this.data.atts.selectizeOptions || {});
+  this.$('input').selectize(selectizeOptions);
 };
 
 Template.afSelectizeInput.destroyed = function () {
