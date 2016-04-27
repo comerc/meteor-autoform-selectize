@@ -41,9 +41,18 @@ In the schema, which will then work with a `quickForm` or `afQuickFields`:
     type: [String],
     autoform: {
       type: "selectize",
-      afFieldInput: {
-        multiple: true,
-        selectizeOptions: {}
+      multiple: true,
+      options: function () {
+        return [
+          {label: "2013", value: 2013},
+          {label: "2014", value: 2014},
+          {label: "2015", value: 2015}
+        ];
+      },
+      selectizeOptions: {
+        hideSelected: true,
+        plugins:
+          "remove_button": {}
       }
     }
   }
@@ -60,7 +69,7 @@ Or on the `afFieldInput` component or any component that passes along attributes
 {{> afFieldInput name="tags" type="selectize" multiple=true}}
 ```
 
-To provide selectize options, set a `selectizeOptions` attribute equal to a helper that returns the options object. Most of the `data-` attributes that the plugin recognizes should also work.
+To provide [selectize options](https://github.com/selectize/selectize.js/blob/master/docs/usage.md#options), set a `selectizeOptions` attribute equal to a helper that returns the options object. Most of the `data-` attributes that the plugin recognizes should also work.
 
 ## Demo
 
