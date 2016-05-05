@@ -17,7 +17,7 @@ $ meteor add aldeed:autoform
 If using with bootstrap, you'll probably also want to:
 
 ```bash
-$ meteor add chhib:selectize-bootstrap-3
+$ meteor add jamiecollinson:selectize-bootstrap
 ```
 (note: as replace of `jeremy:selectize`)
 
