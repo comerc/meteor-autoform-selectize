@@ -88,7 +88,7 @@ AutoForm.addInputType("selectize", {
         // See https://github.com/meteor/meteor/issues/2174
         _id: opt.value,
         selected: _.isArray(context.value) ?
-          _.contains(context.value, opt.value) : (opt.value === context.value),
+          _.includes(context.value, opt.value) : (opt.value === context.value),
         // atts: itemAtts
       };
     };
