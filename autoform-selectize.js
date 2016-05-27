@@ -173,7 +173,6 @@ Template.afSelectize.rendered = function () {
       // TODO may be computation.firstRun?
       test = !test;
       if (test) {
-        console.log('test', items);
         _refreshSelectizeOptions(selectize, items);
       }
     });
