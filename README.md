@@ -87,3 +87,7 @@ Anyone is welcome to contribute. Fork, make your changes, and then submit a pull
 ## See also
 
 [selectize-placecomplete](https://github.com/comerc/selectize-placecomplete)
+
+## License
+
+MIT
