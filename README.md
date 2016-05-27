@@ -51,8 +51,9 @@ In the schema, which will then work with a `quickForm` or `afQuickFields`:
       },
       selectizeOptions: {
         hideSelected: true,
-        plugins:
+        plugins: {
           "remove_button": {}
+        }
       }
     }
   }
