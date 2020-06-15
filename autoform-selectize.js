@@ -180,7 +180,11 @@ Template.afSelectize.rendered = function () {
 };
 
 Template.afSelectize.destroyed = function () {
-  this.$('select')[0].selectize.destroy();
+  var input = this.$('select');
+  var selectize = input && input[0] && input[0].selectize;
+  if (selectize) {
+    selectize.destroy();  
+  }
 };
 
 var _defaults = {
