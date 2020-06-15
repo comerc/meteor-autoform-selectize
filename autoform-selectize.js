@@ -182,7 +182,7 @@ Template.afSelectize.rendered = function () {
 Template.afSelectize.destroyed = function () {
   var input = this.$('select');
   var selectize = input && input[0] && input[0].selectize;
-  if (selectize) {
+  if (selectize && selectize.destroy) {
     selectize.destroy();  
   }
 };
