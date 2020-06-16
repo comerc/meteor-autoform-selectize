@@ -77,5 +77,9 @@ Template.afSelectizeInput.rendered = function () {
 };
 
 Template.afSelectizeInput.destroyed = function () {
-  this.$('input')[0].selectize.destroy();
+  var input = this.$('input');
+  var selectize = input && input[0] && input[0].selectize;
+  if (selectize && selectize.destroy) {
+    selectize.destroy();
+  }
 };
